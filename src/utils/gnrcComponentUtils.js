@@ -4,8 +4,8 @@ const replace = require('replace');
 const { camelCase } = require('lodash');
 const { existsSync, outputFileSync, readFileSync } = require('fs-extra');
 
-const componentJsTemplate = require('../templates/component/componentJsTemplate');
-const componentTsTemplate = require('../templates/component/componentTsTemplate');
+const componentTemplateGenerator = require('../generator/componentTemplateGenerator')
+
 const componentCssTemplate = require('../templates/component/componentCssTemplate');
 const componentLazyTemplate = require('../templates/component/componentLazyTemplate');
 const componentTsLazyTemplate = require('../templates/component/componentTsLazyTemplate');
@@ -18,7 +18,6 @@ const pageSSRTemplate = require('../templates/component/componentNextSSRTemplate
 const pageSSGTemplate = require('../templates/component/componentNextSSGTemplate');
 const pageSSGReduxTemplate = require('../templates/component/componentNextReduxSSGTemplate');
 const pageSSRReduxTemplate = require('../templates/component/componentNextReduxSSRTemplate');
-
 
 function getComponentByType(args, cliConfigFile) {
   const hasComponentTypeOption = args.find((arg) => arg.includes('--type'));
@@ -36,7 +35,7 @@ function getComponentByType(args, cliConfigFile) {
         chalk.red(
           `
   ERROR: Please make sure the component type you're trying to use exists in the
-  ${chalk.bold('gnrc-config-cli.json')} config file under the ${chalk.bold('component')} object.
+  ${chalk.bold('rncez-config-cli.json')} config file under the ${chalk.bold('component')} object.
               `
         )
       );
@@ -70,7 +69,7 @@ function getCustomTemplate(componentName, templatePath) {
       chalk.red(
         `
 ERROR: The custom template path of "${templatePath}" does not exist. 
-Please make sure you're pointing to the right custom template path in your gnrc-config-cli.json config file.
+Please make sure you're pointing to the right custom template path in your rncez-config-cli.json config file.
         `
       )
     );
@@ -81,64 +80,64 @@ Please make sure you're pointing to the right custom template path in your gnrc-
 
 // -- Template for the component
 
-function componentTemplateGenerator({ cmd, componentName, cliConfigFile }) {
-  const { cssPreprocessor, testLibrary, usesCssModule, usesTypeScript } = cliConfigFile;
-  const { customTemplates } = cliConfigFile.component[cmd.type];
-  let template = null;
-  let filename = null;
+// function componentTemplateGenerator({ cmd, componentName, cliConfigFile }) {
+//   const { cssPreprocessor, testLibrary, usesCssModule, usesTypeScript } = cliConfigFile;
+//   const { customTemplates } = cliConfigFile.component[cmd.type];
+//   let template = null;
+//   let filename = null;
 
-  // Check for a custom component template.
+//   // Check for a custom component template.
 
-  if (customTemplates && customTemplates.component) {
-    // --- Load and use the custom component template
+//   if (customTemplates && customTemplates.component) {
+//     // --- Load and use the custom component template
 
-    const { template: customTemplate, filename: customTemplateFilename } = getCustomTemplate(
-      componentName,
-      customTemplates.component
-    );
+//     const { template: customTemplate, filename: customTemplateFilename } = getCustomTemplate(
+//       componentName,
+//       customTemplates.component
+//     );
 
-    template = customTemplate;
-    filename = customTemplateFilename;
-  } else {
-    // --- Else use rncez built-in component template
+//     template = customTemplate;
+//     filename = customTemplateFilename;
+//   } else {
+//     // --- Else use rncez built-in component template
 
-    template = usesTypeScript ? componentTsTemplate : componentJsTemplate;
-    filename = usesTypeScript ? `${componentName}.tsx` : `${componentName}.js`;
+//     template = usesTypeScript ? componentTsTemplate : componentJsTemplate;
+//     filename = usesTypeScript ? `${componentName}.tsx` : `${componentName}.js`;
 
-    // --- If test library is not Testing Library or if withTest is false. Remove data-testid from template
+//     // --- If test library is not Testing Library or if withTest is false. Remove data-testid from template
 
-    if (testLibrary !== 'Testing Library' || !cmd.withTest) {
-      template = template.replace(` data-testid="TemplateName"`, '');
-    }
+//     if (testLibrary !== 'Testing Library' || !cmd.withTest) {
+//       template = template.replace(` data-testid="TemplateName"`, '');
+//     }
 
-    // --- If it has a corresponding stylesheet
+//     // --- If it has a corresponding stylesheet
 
-    if (cmd.withStyle) {
-      const module = usesCssModule ? '.module' : '';
-      const cssPath = `${componentName}${module}.${cssPreprocessor}`;
+//     if (cmd.withStyle) {
+//       const module = usesCssModule ? '.module' : '';
+//       const cssPath = `${componentName}${module}.${cssPreprocessor}`;
 
-      // --- If the css module is true make sure to update the template accordingly
+//       // --- If the css module is true make sure to update the template accordingly
 
-      if (module.length) {
-        template = template.replace(`'./TemplateName.module.css'`, `'./${cssPath}'`);
-      } else {
-        template = template.replace(`{styles.TemplateName}`, `"${componentName}"`);
-        template = template.replace(`styles from './TemplateName.module.css'`, `'./${cssPath}'`);
-      }
-    } else {
-      // --- If no stylesheet, remove className attribute and style import from jsTemplate
+//       if (module.length) {
+//         template = template.replace(`'./TemplateName.module.css'`, `'./${cssPath}'`);
+//       } else {
+//         template = template.replace(`{styles.TemplateName}`, `"${componentName}"`);
+//         template = template.replace(`styles from './TemplateName.module.css'`, `'./${cssPath}'`);
+//       }
+//     } else {
+//       // --- If no stylesheet, remove className attribute and style import from jsTemplate
 
-      template = template.replace(` className={styles.TemplateName}`, '');
-      template = template.replace(`import styles from './TemplateName.module.css';`, '');
-    }
-  }
+//       template = template.replace(` className={styles.TemplateName}`, '');
+//       template = template.replace(`import styles from './TemplateName.module.css';`, '');
+//     }
+//   }
 
-  return {
-    componentPath: `${cmd.path}/${componentName}/${filename}`,
-    filename,
-    template,
-  };
-}
+//   return {
+//     componentPath: `${cmd.path}/${componentName}/${filename}`,
+//     filename,
+//     template,
+//   };
+// }
 
 // -- Template for the style files
 
@@ -178,8 +177,6 @@ function componentStyleTemplateGenerator({ cliConfigFile, cmd, componentName }) 
 }
 
 // -- Template for testing the component
-// ----------------------------------------------------------------
-// Add choise of custom path for the test
 
 function componentTestTemplateGenerator({ cliConfigFile, cmd, componentName }) {
   const { customTemplates } = cliConfigFile.component[cmd.type];
@@ -488,7 +485,7 @@ function customFileTemplateGenerator({ componentName, cmd, cliConfigFile, compon
       chalk.red(
         `
 ERROR: Custom component files require a valid custom template. 
-Please make sure you're pointing to the right custom template path in your gnrc-config-cli.json config file.
+Please make sure you're pointing to the right custom template path in your rncez-config-cli.json config file.
         `
       )
     );

@@ -1,6 +1,6 @@
 {
   "name": "rncez",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Custom tool for generating react component in CLI",
   "bin": {
     "rncez": "bin/Starter.js"
@@ -8,7 +8,7 @@
   "main": "bin/Starter.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test-dummy": "bin/Starter.js create dummy --type=page"
+    "test-dummy": "bin/Starter.js create dummy"
   },
   "repository": {
     "type": "git",

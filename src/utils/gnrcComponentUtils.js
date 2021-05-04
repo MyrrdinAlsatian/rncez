@@ -36,7 +36,7 @@ function getComponentByType(args, cliConfigFile) {
         chalk.red(
           `
   ERROR: Please make sure the component type you're trying to use exists in the
-  ${chalk.bold('rncez-config-cli.json')} config file under the ${chalk.bold('component')} object.
+  ${chalk.bold('gnrc-config-cli.json')} config file under the ${chalk.bold('component')} object.
               `
         )
       );
@@ -70,7 +70,7 @@ function getCustomTemplate(componentName, templatePath) {
       chalk.red(
         `
 ERROR: The custom template path of "${templatePath}" does not exist. 
-Please make sure you're pointing to the right custom template path in your rncez-config-cli.json config file.
+Please make sure you're pointing to the right custom template path in your gnrc-config-cli.json config file.
         `
       )
     );
@@ -100,7 +100,7 @@ function componentTemplateGenerator({ cmd, componentName, cliConfigFile }) {
     template = customTemplate;
     filename = customTemplateFilename;
   } else {
-    // --- Else use GRC built-in component template
+    // --- Else use rncez built-in component template
 
     template = usesTypeScript ? componentTsTemplate : componentJsTemplate;
     filename = usesTypeScript ? `${componentName}.tsx` : `${componentName}.js`;
@@ -164,7 +164,7 @@ function componentStyleTemplateGenerator({ cliConfigFile, cmd, componentName }) 
     const module = usesCssModule ? '.module' : '';
     const cssFilename = `${componentName}${module}.${cssPreprocessor}`;
 
-    // --- Else use GRC built-in style template
+    // --- Else use rncez built-in style template
 
     template = componentCssTemplate;
     filename = cssFilename;
@@ -201,7 +201,7 @@ function componentTestTemplateGenerator({ cliConfigFile, cmd, componentName }) {
     filename = usesTypeScript ? `${componentName}.test.tsx` : `${componentName}.test.js`;
 
     if (testLibrary === 'Enzyme') {
-      // --- Else use GRC built-in test template based on test library type
+      // --- Else use rncez built-in test template based on test library type
 
       template = componentTestEnzymeTemplate;
     } else if (testLibrary === 'Testing Library') {
@@ -244,7 +244,7 @@ function componentStoryTemplateGenerator({ cliConfigFile, cmd, componentName }) 
     template = customTemplate;
     filename = customTemplateFilename;
   } else {
-    // --- Else use GRC built-in story template
+    // --- Else use rncez built-in story template
 
     template = componentStoryTemplate;
     filename = usesTypeScript ? `${componentName}.stories.tsx` : `${componentName}.stories.js`;
@@ -276,7 +276,7 @@ function componentLazyTemplateGenerator({ cmd, componentName, cliConfigFile }) {
     template = customTemplate;
     filename = customTemplateFilename;
   } else {
-    // --- Else use GRC built-in lazy template
+    // --- Else use rncez built-in lazy template
 
     template = usesTypeScript ? componentTsLazyTemplate : componentLazyTemplate;
     filename = usesTypeScript ? `${componentName}.lazy.tsx` : `${componentName}.lazy.js`;
@@ -307,7 +307,7 @@ function componentJsonPackageGenerator({ cmd, componentName, cliConfigFile }) {
     template = customTemplate;
     filename = `package.json`;
   } else {
-    // --- Else use GRC built-in lazy template
+    // --- Else use rncez built-in lazy template
 
     template = componentJsonPackageTemplate;
     filename = `package.json`;
@@ -338,7 +338,7 @@ function componentJsonLazyPackageGenerator({ cmd, componentName, cliConfigFile }
     template = componentJsonLazyPackageTemplate;
     filename = `package.json`;
   } else {
-    // --- Else use GRC built-in lazy template
+    // --- Else use rncez built-in lazy template
 
     template = componentJsonLazyPackageTemplate;
     filename = `package.json`;
@@ -369,7 +369,7 @@ function componentSSRGenerator({ cmd, componentName, cliConfigFile }) {
     template = customTemplate;
     filename = customTemplateFilename;
   } else {
-    // --- Else use GRC built-in lazy template
+    // --- Else use rncez built-in lazy template
 
     template = pageSSRTemplate;
     filename = `${componentName}.js`;
@@ -400,7 +400,7 @@ function componentSSGGenerator({ cmd, componentName, cliConfigFile }) {
     template = customTemplate;
     filename = customTemplateFilename;
   } else {
-    // --- Else use GRC built-in lazy template
+    // --- Else use rncez built-in lazy template
 
     template = pageSSGTemplate;
     filename = `${componentName}.js`;
@@ -431,7 +431,7 @@ function componentSSGReduxGenerator({ cmd, componentName, cliConfigFile }) {
     template = customTemplate;
     filename = customTemplateFilename;
   } else {
-    // --- Else use GRC built-in lazy template
+    // --- Else use rncez built-in lazy template
 
     template = pageSSGReduxTemplate;
     filename = `${componentName}.js`;
@@ -462,7 +462,7 @@ function componentSSRReduxGenerator({ cmd, componentName, cliConfigFile }) {
     template = customTemplate;
     filename = customTemplateFilename;
   } else {
-    // --- Else use GRC built-in lazy template
+    // --- Else use rncez built-in lazy template
 
     template = pageSSRReduxTemplate;
     filename = `${componentName}.js`;
@@ -488,7 +488,7 @@ function customFileTemplateGenerator({ componentName, cmd, cliConfigFile, compon
       chalk.red(
         `
 ERROR: Custom component files require a valid custom template. 
-Please make sure you're pointing to the right custom template path in your rncez-config-cli.json config file.
+Please make sure you're pointing to the right custom template path in your gnrc-config-cli.json config file.
         `
       )
     );

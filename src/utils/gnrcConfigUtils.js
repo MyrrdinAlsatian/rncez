@@ -4,16 +4,16 @@ const { prompt } = require('inquirer');
 const { merge } = require('lodash');
 const { accessSync, constants, outputFileSync, readFileSync } = require('fs-extra');
 
-// Generate React Config file questions.
+// rncez Config file questions.
 
 // --- project level questions.
 
 const projectLevelQuestions = [
-//   {
-//     type: 'confirm',
-//     name: 'usesTypeScript',
-//     message: 'Does this project use TypeScript?',
-//   },
+  {
+    type: 'confirm',
+    name: 'usesTypeScript',
+    message: 'Does this project use TypeScript?',
+  },
   {
     type: 'confirm',
     name: 'usesCssModule',
@@ -36,7 +36,7 @@ const projectLevelQuestions = [
     name: 'testLibrary',
     message: 'What testing library does your project use?',
     choices: ['Testing Library', 'Enzyme', 'None'],
-  },
+  }
 ];
 
 // --- component level questions.
@@ -69,6 +69,11 @@ const componentLevelQuestions = [
     message:
       'Would you like to create a corresponding lazy file (a file that lazy-loads your component out of the box and enables code splitting: https://reactjs.org/docs/code-splitting.html#code-splitting) with each component you generate?',
   },
+  {
+    type: 'confirm',
+    name: 'component.default.withJSON',
+    message: 'Do you want to use Package.json to tag your component?',
+  },
 ];
 
 // --- merge all questions together.
@@ -84,12 +89,12 @@ async function createCLIConfigFile() {
       )
     );
     console.log(
-      chalk.cyan("It looks like this is the first time that you're running GNRC within this project.")
+      chalk.cyan("It looks like this is the first time that you're running RNCEZ within this project.")
     );
     console.log();
     console.log(
       chalk.cyan(
-        'Answer a few questions to customize gnrc-config-cli for your project needs (this will create a "gnrc-config-cli.json" config file on the root level of this project).'
+        'Answer a few questions to customize rncez-config-cli for your project needs (this will create a "rncez-config-cli.json" config file on the root level of this project).'
       )
     );
     console.log(
@@ -101,12 +106,12 @@ async function createCLIConfigFile() {
 
     const answers = await prompt(grcConfigQuestions);
 
-    outputFileSync('gnrc-config-cli.json', JSON.stringify(answers, null, 2));
+    outputFileSync('rncez-config-cli.json', JSON.stringify(answers, null, 2));
 
     console.log();
     console.log(
       chalk.cyan(
-        'The "gnrc-config-cli.json" config file has been successfully created on the root level of your project.'
+        'The "rncez-config-cli.json" config file has been successfully created on the root level of your project.'
       )
     );
 
@@ -119,7 +124,7 @@ async function createCLIConfigFile() {
 
     return answers;
   } catch (e) {
-    console.error(chalk.red.bold('ERROR: Could not create a "gnrc-config-cli.json" config file.'));
+    console.error(chalk.red.bold('ERROR: Could not create a "rncez-config-cli.json" config file.'));
     return e;
   }
 }
@@ -140,7 +145,7 @@ async function updateCLIConfigFile(missingConfigQuestions, currentConfigFile) {
       )
     );
     console.log('');
-    console.log(chalk.cyan('Please answer a few questions to update the "gnrc-config-cli.json" config file.'));
+    console.log(chalk.cyan('Please answer a few questions to update the "rncez-config-cli.json" config file.'));
     console.log(
       chalk.cyan(
         '------------------------------------------------------------------------------------------------------------------------------'
@@ -151,10 +156,10 @@ async function updateCLIConfigFile(missingConfigQuestions, currentConfigFile) {
     const answers = await prompt(missingConfigQuestions);
     const updatedAnswers = merge({}, currentConfigFile, answers);
 
-    outputFileSync('gnrc-config-cli.json', JSON.stringify(updatedAnswers, null, 2));
+    outputFileSync('rncez-config-cli.json', JSON.stringify(updatedAnswers, null, 2));
 
     console.log();
-    console.log(chalk.cyan('The ("gnrc-config-cli.json") has successfully updated for this project.'));
+    console.log(chalk.cyan('The ("rncez-config-cli.json") has successfully updated for this project.'));
 
     console.log();
     console.log(chalk.cyan('You can always go back and manually update it as needed.'));
@@ -165,7 +170,7 @@ async function updateCLIConfigFile(missingConfigQuestions, currentConfigFile) {
 
     return updatedAnswers;
   } catch (e) {
-    console.error(chalk.red.bold('ERROR: Could not update the "gnrc-config-cli.json" config file.'));
+    console.error(chalk.red.bold('ERROR: Could not update the "rncez-config-cli.json" config file.'));
     return e;
   }
 }
@@ -181,8 +186,8 @@ async function getCLIConfigFile() {
     // --- Check to see if the config file exists
 
     try {
-      accessSync('./gnrc-config-cli.json', constants.R_OK);
-      const currentConfigFile = JSON.parse(readFileSync('./gnrc-config-cli.json'));
+      accessSync('./rncez-config-cli.json', constants.R_OK);
+      const currentConfigFile = JSON.parse(readFileSync('./rncez-config-cli.json'));
 
       /**
        *  Check to see if there's a difference between grcConfigQuestions and the currentConfigFile.
@@ -204,7 +209,7 @@ async function getCLIConfigFile() {
   } catch (error) {
     console.error(
       chalk.red.bold(
-        "ERROR: Please make sure that you're running the gnrc-config-cli commands from the root level of your project"
+        "ERROR: Please make sure that you're running the rncez-config-cli commands from the root level of your project"
       )
     );
     return process.exit(1);

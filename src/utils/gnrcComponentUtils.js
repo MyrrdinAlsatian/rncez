@@ -36,7 +36,7 @@ function getComponentByType(args, cliConfigFile) {
         chalk.red(
           `
   ERROR: Please make sure the component type you're trying to use exists in the
-  ${chalk.bold('gnrc-config-cli.json')} config file under the ${chalk.bold('component')} object.
+  ${chalk.bold('rncez-config-cli.json')} config file under the ${chalk.bold('component')} object.
               `
         )
       );
@@ -70,7 +70,7 @@ function getCustomTemplate(componentName, templatePath) {
       chalk.red(
         `
 ERROR: The custom template path of "${templatePath}" does not exist. 
-Please make sure you're pointing to the right custom template path in your gnrc-config-cli.json config file.
+Please make sure you're pointing to the right custom template path in your rncez-config-cli.json config file.
         `
       )
     );
@@ -488,7 +488,7 @@ function customFileTemplateGenerator({ componentName, cmd, cliConfigFile, compon
       chalk.red(
         `
 ERROR: Custom component files require a valid custom template. 
-Please make sure you're pointing to the right custom template path in your gnrc-config-cli.json config file.
+Please make sure you're pointing to the right custom template path in your rncez-config-cli.json config file.
         `
       )
     );

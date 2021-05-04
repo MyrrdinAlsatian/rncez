@@ -18,7 +18,7 @@ function initGenerateComponentCommand(args, cliConfigFile, program) {
     .option('-p, --path <path>', 'The path where the component will get generated in.', selectedComponentType.path)
     .option(
       '--type <type>',
-      'You can pass a component type that you have configured in your GRC config file.',
+      'You can pass a component type that you have configured in your rncez-config.json file.',
       'default'
     );
 

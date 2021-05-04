@@ -1,5 +1,4 @@
 module.exports =`import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import styles from './TemplateName.module.scss';
 
 const TemplateName = () => (
@@ -13,9 +12,7 @@ const TemplateName = () => (
   </div>
 );
 
-TemplateName.propTypes = {};
 
-TemplateName.defaultProps = {};
 
 export default TemplateName;
 `;

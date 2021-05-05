@@ -100,6 +100,70 @@ With the use of package.json, you can import easily and in a more readable way w
 <br>
 
 ## Options
+
+<table>
+  <tr align="left">
+    <th>Options</th>
+    <th>Description</th>
+    <th>Value Type</th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td width="20%"><b>--path</b></td>
+    <td width="60%">
+      Value of the path where you want the component to be generated in (e.g. <b>src/components</b>).  
+    </td>
+    <td width="20%">String</td>
+    <td width="20%"><code>component.default.path<code></td>
+  </tr>
+
+  <tr>
+    <td width="20%"><b>--type</b></td>
+    <td width="60%">
+      You can pass a custom component type that you have configured in the GRC config file that has its own set of component config rules. Read more about <a href="#custom-component-types">custom component types</a>.
+    </td>
+    <td width="20%">String</td>
+    <td width="20%"><code>component.default<code></td>
+  </tr>
+
+  <tr>
+    <td width="20%"><b>--withLazy</b></td>
+    <td width="60%">
+      Creates a corresponding lazy file (a file that lazy-loads your component out of the box and enables <a href="https://reactjs.org/docs/code-splitting.html#code-splitting">code splitting</a>) with this component.      
+    </td>
+    <td width="20%">Boolean</td>
+    <td width="20%"><code>component.default.withLazy<code></td>
+  </tr>
+
+  <tr>
+    <td width="20%"><b>--withStory</b></td>
+    <td width="60%">
+      Creates a corresponding (<a href="https://storybook.js.org">storybook</a>) story file with this component.      
+    </td>
+    <td width="20%">Boolean</td>
+    <td width="20%"><code>component.default.withStory<code></td>
+  </tr>
+
+  <tr>
+    <td width="20%"><b>--withStyle</b></td>
+    <td width="60%">
+      Creates a corresponding stylesheet file with this component.    
+    </td>
+    <td width="20%">Boolean</td>
+    <td width="20%"><code>component.default.withStyle<code></td>
+  </tr>
+  <tr>
+    <td width="20%"><b>--withTest</b></td>
+    <td width="60%">
+      Creates a corresponding test file with this component.      
+    </td>
+    <td width="20%">Boolean</td>
+    <td width="20%"><code>component.default.withTest<code></td>
+  </tr>
+</table>
+
+<br>
+
 You can also override some of RNCEZ component config rules using one-off commands. So for example, if you have set `withStory` to `true` in your **default component** setup, but now you want to create a component whitout **Story**, You can override it : 
 
 ```

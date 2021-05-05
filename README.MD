@@ -1,28 +1,28 @@
 # Right Now Component Easy
 
 Based on :
-[![dependencies](https://david-dm.org/MyrrdinAlsatian/rncez.svg)](https://david-dm.org//MyrrdinAlsatian/rncez)
-[![License](https://img.shields.io/npm/l/express.svg)](https://github.com/arminbro/generate-react-cli/blob/master/LICENSE)
+[![dependencies](https://david-dm.org/MyrrdinAlsatian/rncez.svg)](https://david-dm.org/MyrrdinAlsatian/rncez)
 
 <br>
 
 ## Why 
----
+
 Because I didn't found a tool who really fits completely my need, because it's just a waste of time to copy/paste the component and change the name in the component every time.
 
 <br>
 
 ## How to use it
----
+
 ```bash
     npx rncz create Myrrdin
 ```
 
 _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) is a package runner tool that comes with npm 5.2+)_
+
 <br>
 
 ## How is it configure
----
+
 When you run the command for the first time in your project, it will ask you a couple of question in order to customize RNCEZ to fit your project and to create "rncez-config-cli.json" config files if you want to make some change.
 
 <br>
@@ -47,7 +47,6 @@ When you run the command for the first time in your project, it will ask you a c
         }
     } 
 }
-
 ```
 ## Generated component
 
@@ -63,7 +62,27 @@ This command will create a folder with your component name within your default (
 
 <br>
 
-### Example of th defautl component files struture:
+## The file structure
+
+The File structure is based on the Grouping by features or routes rules.
+
+So we decided to locate CSS, JS, and tests in the component. You have two possibilities for the tests at the same level or in a folder.
+
+
+### Example of the default component files struture:
+
+
+```
+|-- /src
+    |-- /components
+        |-- /Box
+            |-- Box.js
+            |-- Box.css
+            |-- Box.test.js
+            |-- package.json
+```
+### Example of the default component files struture with a test folder:
+
 ```
 |-- /src
     |-- /components
@@ -77,30 +96,23 @@ This command will create a folder with your component name within your default (
 
 **__Why use a package.json__**
 ```json
-
     {"main": "Box.js"}
-    
 ```
 With the use of package.json, you can import easily and in a more readable way without redundancy!
 
 **_no more :_**
 
 ```js
-
   import Box from './components/Box/box.js';
-
 ```
 **_just :_**
 
 ```js
-
   import Box from './components/Box';
-
 ```
 <br>
 
 ## Options
-
 <table>
   <tr align="left">
     <th>Options</th>
@@ -184,7 +196,7 @@ And of course if you don't pass any options, it will run the default config valu
 
 By default, the RNCEZ will use the default configuration when you run the command. 
 
-but waht if you want to generate another types of components that have their own set of configuration rules (e.g., **layout** or **page** )?
+But what if you want to generate another type of components that have their own set of configuration rules (e.g., **layout** or **page** )?
 
 you can do it by extending the ``rncez-config-cli.json`` config file like this :
 

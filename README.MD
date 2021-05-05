@@ -230,3 +230,130 @@ Notice in the `page.customTemplates` that we only specified the `test` custom te
 
 **_You can create a bunch of templates that you host on Gitlab or Github and clone the repository to the root of your project as a submodule of the project so you can update the template easily. ;-)_**
 
+
+### Example of a custom component template file :
+
+```jsx
+// templatesReact/componentClass/TemplateName.js
+
+import React, { Component } from 'react'
+import styles from './TemplateName.module.scss';
+
+export class TemplateName extends Component {
+    
+    constructor(props){
+        super(props);
+        this.state = { state: 0 };
+        this.someFunction = this.someFunction.bind(this);        
+    };
+    componentWillMount(){};
+    componentDidMount(){};
+    componentWillReceiveProps(){};
+    ShouldComponentUpdate(){};
+    componentWillUpdate(){};
+    componentDidUpdate(){};
+    componentWillUnmount(){};
+
+    /**
+     * Here event function with handle or on prefix
+     * then getter for render 
+     */
+
+    render() {
+        return (
+            <div>           
+            </div>
+        )
+    }
+}
+
+export default TemplateName
+
+```
+## Custom component files
+RNVEZ comes with corresponding built-in files for a given component if you need them (i.e., `withStyle`, `withTest`, `withStory`, `withLazy`, `withJSON`).
+
+What if you wanted to add custom files of your own?
+
+For example, let's say you wanted to add an `README.md` file for each component, so you document your component.
+
+Or maybe you need an additional style file for your component stories.
+
+You can do so by editing your **rncez-config-cli.json** config file like so.
+
+```json
+{
+  "usesTypeScript": false,
+  "usesCssModule": true,
+  "cssPreprocessor": "scss",
+  "testFolder": "__test__",
+  "testLibrary": "Enzyme",
+  "component": {
+    "default": {
+      "path": "src/components",
+      "withStyle": true,
+      "withTest": true,
+      "withStory": true,
+      "withLazy": false,
+      "withMd": true,
+      "withStoryStyle": true,
+      "customTemplates": {
+        "md": "templates/default/README.md",
+        "storyStyle": "templates/default/TemplateName.stories.css"
+      }
+    }
+  }
+}
+```
+
+```md
+[comment]: <> (templatesReact/componentClass/TemplateName.md)
+
+# TemplateName:
+
+## Description :
+----------------
+
+Knacksum
+
+## How to use it
+- - - - - - - - - - -
+
+```jsx static
+
+import TemplateName from './components/TemplateName.js'
+            ...
+
+<TemplateName> </TemplateName>
+
+``
+
+### Variant and Props :
+
+```jsx static
+        ...
+    <TemplateName variant="loading" > </TemplateName>
+``
+## Tests
+- - -
+What is tested : 
+>'' Knacksum"
+> 1664. What a great knack.
+
+- - - - -
+Credit to [@]: 
+
+```
+
+```css
+/* templates/default/TemplateName.stories.css */
+
+.TemplateName {
+}
+```
+
+In this case, we added a `withmd` & `withStoryStyle` to the `component.default`. Note: You can add custom files to any of your custom component types.
+
+You should also see that we added `md` and `storyStyle` to our `customTemplates` object. That's because custom files require custom templates. Otherwise, you will get an error when you generate a component.
+
+Also, we used the `TemplateName` keyword for the `storyStyle` custom file. RNCEZ will generate this corresponding file and replace `TemplateName` with the component name.

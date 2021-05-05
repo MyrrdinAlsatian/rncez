@@ -6,6 +6,8 @@ const { existsSync, outputFileSync, readFileSync } = require('fs-extra');
 
 // const componentTemplateGenerator = require('../generator/componentTemplateGenerator')
 
+const componentJsTemplate = require('../templates/component/componentJsTemplate');
+const componentTsTemplate = require('../templates/component/componentTsTemplate');
 const componentCssTemplate = require('../templates/component/componentCssTemplate');
 const componentLazyTemplate = require('../templates/component/componentLazyTemplate');
 const componentTsLazyTemplate = require('../templates/component/componentTsLazyTemplate');

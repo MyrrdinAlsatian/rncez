@@ -1,1 +1,1 @@
-module.exports =  `{"main": "TemplateName.lazy.js"}`;
+module.exports =  `{"main": "TemplateName.js"}`;

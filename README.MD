@@ -14,7 +14,7 @@ Because I didn't found a tool who really fits completely my need, because it's j
 ## How to use it
 
 ```bash
-    npx rncz create Myrrdin
+    npx rncez create Myrrdin
 ```
 
 _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) is a package runner tool that comes with npm 5.2+)_

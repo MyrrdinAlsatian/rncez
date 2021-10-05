@@ -1,6 +1,6 @@
 module.exports = `import React from 'react';
 import ReactDOM from 'react-dom';
-import TemplateName from './TemplateName';
+import TemplateName from 'TemplateTestName';
 
 it('It should mount', () => {
   const div = document.createElement('div');

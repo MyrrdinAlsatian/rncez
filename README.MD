@@ -5,7 +5,7 @@ Based on :
 
 <br>
 
-## Why 
+## Why
 
 Because I didn't found a tool who really fits completely my need, because it's just a waste of time to copy/paste the component and change the name in the component every time.
 
@@ -36,28 +36,31 @@ When you run the command for the first time in your project, it will ask you a c
   "cssPreprocessor": "scss",
   "testFolder": "__test__",
   "testLibrary": "Enzyme",
-  "component":{
-        "default": {
-            "path": "components",
-            "withStyle": true,
-            "withTest": true,
-            "withStory": false,
-            "withLazy": true,
-            "withJSON": true
-        }
-    } 
+  "component": {
+    "default": {
+      "path": "components",
+      "withStyle": true,
+      "withTest": true,
+      "withStory": false,
+      "withLazy": true,
+      "withJSON": true
+    }
+  }
 }
 ```
+
 ## Generated component
 
 ```
   npx rncez create Myrrdin
 ```
-**__You can also create multiple component in a single commands:__**
+
+****You can also create multiple component in a single commands:****
 
 ```
   npx rncez create Myrrdin Artorius Provencal Gaulois
 ```
+
 This command will create a folder with your component name within your default (e.g. **src/components**) directory, and its corresponding files.
 
 <br>
@@ -68,9 +71,7 @@ The File structure is based on the Grouping by features or routes rules.
 
 So we decided to locate CSS, JS, and tests in the component. You have two possibilities for the tests at the same level or in a folder.
 
-
 ### Example of the default component files struture:
-
 
 ```
 |-- /src
@@ -81,6 +82,7 @@ So we decided to locate CSS, JS, and tests in the component. You have two possib
             |-- Box.test.js
             |-- package.json
 ```
+
 ### Example of the default component files struture with a test folder:
 
 ```
@@ -94,25 +96,30 @@ So we decided to locate CSS, JS, and tests in the component. You have two possib
             |-- package.json
 ```
 
-**__Why use a package.json__**
+****Why use a package.json****
+
 ```json
-    {"main": "Box.js"}
+{ "main": "Box.js" }
 ```
+
 With the use of package.json, you can import easily and in a more readable way without redundancy!
 
 **_no more :_**
 
 ```js
-  import Box from './components/Box/box.js';
+import Box from "./components/Box/box.js";
 ```
+
 **_just :_**
 
 ```js
-  import Box from './components/Box';
+import Box from "./components/Box";
 ```
+
 <br>
 
 ## Options
+
 <table>
   <tr align="left">
     <th>Options</th>
@@ -176,7 +183,7 @@ With the use of package.json, you can import easily and in a more readable way w
 
 <br>
 
-You can also override some of RNCEZ component config rules using one-off commands. So for example, if you have set `withStory` to `true` in your **default component** setup, but now you want to create a component whitout **Story**, You can override it : 
+You can also override some of RNCEZ component config rules using one-off commands. So for example, if you have set `withStory` to `true` in your **default component** setup, but now you want to create a component whitout **Story**, You can override it :
 
 ```
   npx rncez create Myrrdin --withStory=false
@@ -188,17 +195,17 @@ Or vice versa, if you have set `withStory` to be `false` you can do this:
   npx rncez create Myrrdin --withStory=true
 ```
 
-And of course if you don't pass any options, it will run the default config values, which are in the config file under `component.default` 
+And of course if you don't pass any options, it will run the default config values, which are in the config file under `component.default`
 
 <br>
 
 ## Custom component types:
 
-By default, the RNCEZ will use the default configuration when you run the command. 
+By default, the RNCEZ will use the default configuration when you run the command.
 
 But what if you want to generate another type of components that have their own set of configuration rules (e.g., **layout** or **page** )?
 
-you can do it by extending the ``rncez-config-cli.json`` config file like this :
+you can do it by extending the `rncez-config-cli.json` config file like this :
 
 ```json
 {
@@ -207,23 +214,22 @@ you can do it by extending the ``rncez-config-cli.json`` config file like this :
   "cssPreprocessor": "scss",
   "testFolder": "__test__",
   "testLibrary": "Enzyme",
-  "component":{
-        "default": {
-            "path": "components",
-            "withStyle": true,
-            "withTest": true,
-            "withStory": false,
-            "withLazy": true,
-            "withJSON": true
-        },
+  "component": {
+    "default": {
+      "path": "components",
+      "withStyle": true,
+      "withTest": true,
+      "withStory": false,
+      "withLazy": true,
+      "withJSON": true
+    },
     "page": {
       "path": "src/pages",
       "withLazy": true,
       "withStory": false,
       "withStyle": false,
       "withTest": true,
-      "withJSON": true,
-      
+      "withJSON": true
     },
     "layout": {
       "path": "src/layout",
@@ -233,7 +239,7 @@ you can do it by extending the ``rncez-config-cli.json`` config file like this :
       "withTest": true,
       "withJSON": true
     }
-  }     
+  }
 }
 ```
 
@@ -242,18 +248,20 @@ Now you can generate your custom type component like this :
 ```bash
     npx rncez create Myrrdin --type=layout
 ```
+
 ```bash
     npx rncez create ProvencalLeGallois --type=page
 ```
-**__And of course you can use the same [options](#options) to your custom component types as you would use for the default component type.__**
 
+****And of course you can use the same [options](#options) to your custom component types as you would use for the default component type.****
 
 ## Custom component templates
+
 In order to provide more flexibility, You can also create your own custom templates that RNCEZ can use instead of the build-in templates that come with it.
 
 There is an optional `customTemplates` object that you can pass to the `component.default` or any of your custom component types within your **rncez-config-cli.json** config file.
 
-### Example of the `customTempalte ̀  object :
+### Example of the `customTempalte ̀ object :
 
 ```json
 "customTemplates": {
@@ -264,6 +272,7 @@ There is an optional `customTemplates` object that you can pass to the `componen
   "test":  "templates/TemplateName.test.js"
 },
 ```
+
 The keys represent the type of file, and the values are the paths that point to where your custom template lives in your project/system. Please note the `TemplateName` keyword in the template filename. RNCEZ will use this keyword and replace it with your component name as the filename.
 
 #### Example of using the `customTemplates` object within your rncez-config-cli.json config file:
@@ -306,48 +315,44 @@ Notice in the `page.customTemplates` that we only specified the `test` custom te
 
 **_You can create a bunch of templates that you host on Gitlab or Github and clone the repository to the root of your project as a submodule of the project so you can update the template easily. ;-)_**
 
-
 ### Example of a custom component template file :
 
 ```jsx
 // templatesReact/componentClass/TemplateName.js
 
-import React, { Component } from 'react'
-import styles from './TemplateName.module.scss';
+import React, { Component } from "react";
+import styles from "./TemplateName.module.scss";
 
 export class TemplateName extends Component {
-    
-    constructor(props){
-        super(props);
-        this.state = { state: 0 };
-        this.someFunction = this.someFunction.bind(this);        
-    };
-    componentWillMount(){};
-    componentDidMount(){};
-    componentWillReceiveProps(){};
-    ShouldComponentUpdate(){};
-    componentWillUpdate(){};
-    componentDidUpdate(){};
-    componentWillUnmount(){};
+  constructor(props) {
+    super(props);
+    this.state = { state: 0 };
+    this.someFunction = this.someFunction.bind(this);
+  }
+  componentWillMount() {}
+  componentDidMount() {}
+  componentWillReceiveProps() {}
+  ShouldComponentUpdate() {}
+  componentWillUpdate() {}
+  componentDidUpdate() {}
+  componentWillUnmount() {}
 
-    /**
-     * Here event function with handle or on prefix
-     * then getter for render 
-     */
+  /**
+   * Here event function with handle or on prefix
+   * then getter for render
+   */
 
-    render() {
-        return (
-            <div>           
-            </div>
-        )
-    }
+  render() {
+    return <div></div>;
+  }
 }
 
-export default TemplateName
-
+export default TemplateName;
 ```
+
 ## Custom component files
-RNVEZ comes with corresponding built-in files for a given component if you need them (i.e., `withStyle`, `withTest`, `withStory`, `withLazy`, `withJSON`).
+
+RNCEZ comes with corresponding built-in files for a given component if you need them (i.e., `withStyle`, `withTest`, `withStory`, `withLazy`, `withJSON`).
 
 What if you wanted to add custom files of your own?
 
@@ -382,20 +387,22 @@ You can do so by editing your **rncez-config-cli.json** config file like so.
 }
 ```
 
-```md
+````md
 [comment]: <> (templatesReact/componentClass/TemplateName.md)
 
 # TemplateName:
 
 ## Description :
-----------------
+
+---
 
 Knacksum
 
 ## How to use it
-- - - - - - - - - - -
 
-```jsx static
+---
+
+````jsx static
 
 import TemplateName from './components/TemplateName.js'
             ...
@@ -412,14 +419,14 @@ import TemplateName from './components/TemplateName.js'
 ``
 ## Tests
 - - -
-What is tested : 
+What is tested :
 >'' Knacksum"
 > 1664. What a great knack.
 
 - - - - -
-Credit to [@]: 
-
-```
+Credit to [@]:
+````
+````
 
 ```css
 /* templates/default/TemplateName.stories.css */

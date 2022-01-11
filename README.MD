@@ -139,7 +139,7 @@ import Box from "./components/Box";
   <tr>
     <td width="20%"><b>--type</b></td>
     <td width="60%">
-      You can pass a custom component type that you have configured in the GRC config file that has its own set of component config rules. Read more about <a href="#custom-component-types">custom component types</a>.
+      You can pass a custom component type that you have configured in the RNCEZ config file that has its own set of component config rules. Read more about <a href="#custom-component-types">custom component types</a>.
     </td>
     <td width="20%">String</td>
     <td width="20%"><code>component.default<code></td>

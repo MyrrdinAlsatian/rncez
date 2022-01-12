@@ -7,7 +7,7 @@ Based on :
 
 ## Why
 
-Because I didn't found a tool who really fits completely my need, because it's just a waste of time to copy/paste the component and change the name in the component every time.
+Because I haven't found a tool who really fits completely my need, because it's just a waste of time to copy/paste the component and change the name in the component every time.
 
 <br>
 

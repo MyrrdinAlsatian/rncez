@@ -1,6 +1,6 @@
 {
   "name": "rncez",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Custom tool for generating react component in CLI",
   "bin": {
     "rncez": "bin/Starter.js"
@@ -8,7 +8,8 @@
   "main": "bin/Starter.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test-dummy": "bin/Starter.js create dummy"
+    "test-dummy": "bin/Starter.js create dummy",
+    "husky": "husky install && chmod ug+x .husky/*"
   },
   "repository": {
     "type": "git",
@@ -30,5 +31,23 @@
     "inquirer": "^8.2.4",
     "lodash": "^4.17.21",
     "replace": "^1.2.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@commitlint/cz-commitlint": "^17.0.3",
+    "commitizen": "^4.2.4",
+    "commitlint-config-cz": "^0.13.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.9.0",
+    "husky": "^8.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.js"
+    }
   }
 }

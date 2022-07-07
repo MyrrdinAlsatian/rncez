@@ -1,10 +1,6 @@
 {
   "name": "rncez",
-<<<<<<< HEAD
   "version": "1.1.0",
-=======
-  "version": "1.0.2",
->>>>>>> 66601a69561204c53a995f78489b7682a8438e79
   "description": "Custom tool for generating react component in CLI",
   "bin": {
     "rncez": "bin/Starter.js"

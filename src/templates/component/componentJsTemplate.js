@@ -1,4 +1,5 @@
-module.exports =`import React from 'react';
+module.exports = `import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './TemplateName.module.scss';
 
 const TemplateName = () => (
@@ -7,8 +8,10 @@ const TemplateName = () => (
   </div>
 );
 
+TemplateName.propTypes = {};
+
+TemplateName.defaultProps = {};
 
 
 export default TemplateName;
 `;
-

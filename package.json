@@ -1,6 +1,6 @@
 {
   "name": "rncez",
-  "version": "1.1.1",
+  "version": "1.1.4",
   "description": "Custom tool for generating react component in CLI",
   "bin": {
     "rncez": "bin/Starter.js"
@@ -28,8 +28,9 @@
     "commander": "^7.2.0",
     "deep-keys": "^0.5.0",
     "fs-extra": "^9.1.0",
-    "inquirer": "^8.0.0",
+    "inquirer": "^8.2.5",
     "lodash": "^4.17.21",
+<<<<<<< HEAD
     "replace": "^1.2.1"
   },
   "devDependencies": {
@@ -49,5 +50,8 @@
     "cz-customizable": {
       "config": ".cz-config.js"
     }
+=======
+    "replace": "^1.2.2"
+>>>>>>> 829b828758ab120a8fd19552223a4c348954afb9
   }
 }

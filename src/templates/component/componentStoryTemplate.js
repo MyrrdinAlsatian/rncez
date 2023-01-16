@@ -1,4 +1,5 @@
 module.exports = `/* eslint-disable */
+/* eslint-disable */
 import React from 'react';
 import TemplateName from '../TemplateName';
 

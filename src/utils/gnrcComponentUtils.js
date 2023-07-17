@@ -16,6 +16,7 @@ const componentTestEnzymeTemplate = require("../templates/component/componentTes
 const componentTestDefaultTemplate = require("../templates/component/componentTestDefaultTemplate");
 const componentTestTestingLibraryTemplate = require("../templates/component/componentTestTestingLibraryTemplate");
 const componentJsonPackageTemplate = require("../templates/component/componentJsonPackage");
+const componentJsonPackageTsTemplate = require("../templates/component/componentTsJsonPackage");
 const pageSSRTemplate = require("../templates/component/componentNextSSRTemplate");
 const pageSSGTemplate = require("../templates/component/componentNextSSGTemplate");
 const pageSSGReduxTemplate = require("../templates/component/componentNextReduxSSGTemplate");
@@ -343,7 +344,7 @@ function componentJsonPackageGenerator({ cmd, componentName, cliConfigFile }) {
   } else {
     // --- Else use rncez built-in lazy template
 
-    template = componentJsonPackageTemplate;
+    template =  usesTypesScript ? componentJsonPackageTsTemplate : componentJsonPackageTemplate;
     filename = `package.json`;
   }
 

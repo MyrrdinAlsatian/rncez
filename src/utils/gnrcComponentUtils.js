@@ -327,6 +327,7 @@ function componentLazyTemplateGenerator({ cmd, componentName, cliConfigFile }) {
 }
 
 function componentJsonPackageGenerator({ cmd, componentName, cliConfigFile }) {
+    const { usesTypeScript } = cliConfigFile;
   const { customTemplates } = cliConfigFile.component[cmd.type];
   let template = null;
   let filename = null;
@@ -344,7 +345,9 @@ function componentJsonPackageGenerator({ cmd, componentName, cliConfigFile }) {
   } else {
     // --- Else use rncez built-in lazy template
 
-    template =  usesTypesScript ? componentJsonPackageTsTemplate : componentJsonPackageTemplate;
+    template = usesTypeScript
+      ? componentJsonPackageTsTemplate
+      : componentJsonPackageTemplate;
     filename = `package.json`;
   }
 
